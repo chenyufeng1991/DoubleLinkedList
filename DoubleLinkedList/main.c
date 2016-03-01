@@ -67,7 +67,7 @@ Node *createList(Node *pNode){
     }
 
     printf("%s函数执行，建立链表成功\n",__FUNCTION__);
-    
+
     return pNode;
 }
 
@@ -127,6 +127,19 @@ int sizeList(Node *pNode){
     }
 }
 
+//6.检查双链表链表是否为空，若为空则返回１，否则返回０
+int isEmptyList(Node *pNode){
+
+    if (pNode == NULL) {
+        printf("%s函数执行，当前链表为空\n",__FUNCTION__);
+        return 1;
+    }
+    printf("%s函数执行，当前链表非空\n",__FUNCTION__);
+
+    return 0;
+}
+
+
 int main(int argc, const char * argv[]) {
 
     Node *pList;
@@ -139,9 +152,11 @@ int main(int argc, const char * argv[]) {
     printList(pList);
     sizeList(pList);
 
+    isEmptyList(pList);
+    
     pList = clearList(pList);
     printList(pList);
-
+    
     return 0;
 }
 
