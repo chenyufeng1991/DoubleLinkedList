@@ -199,6 +199,31 @@ int modifyElem(Node *pNode,int pos,int x){
     return 1;
 }
 
+//10.向不带头结点的非循环双向链表头部插入一个节点
+Node *insertHeadList(Node *pNode,int x){
+
+    Node *pInsert;
+    pInsert = (Node*)malloc(sizeof(Node));
+    memset(pInsert, 0, sizeof(Node));
+    pInsert->next = NULL;
+    pInsert->prior = NULL;
+    pInsert->element = x;
+
+    //这里要考虑原链表为空的情况
+    if (pNode == NULL) {
+        pNode = pInsert;
+        printf("%s函数执行，在头部插入节点成功\n",__FUNCTION__);
+        return pNode;
+    }
+
+    pInsert->next = pNode;
+    pNode->prior = pInsert;
+    pNode = pInsert;
+    printf("%s函数执行，在头部插入节点成功\n",__FUNCTION__);
+
+    return pNode;
+}
+
 
 int main(int argc, const char * argv[]) {
 
@@ -219,6 +244,9 @@ int main(int argc, const char * argv[]) {
     getElemAddr(pList, 5);
 
     modifyElem(pList, 4, 1111);
+    printList(pList);
+
+    pList = insertHeadList(pList, 8888);
     printList(pList);
 
     pList = clearList(pList);
