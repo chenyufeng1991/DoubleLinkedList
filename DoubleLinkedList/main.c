@@ -224,6 +224,38 @@ Node *insertHeadList(Node *pNode,int x){
     return pNode;
 }
 
+//11.向不带头结点的非循环双向链表尾部插入一个节点
+Node *insertTailList(Node *pNode,int x){
+
+    Node *pMove;
+    Node *pInsert;
+    pInsert = (Node*)malloc(sizeof(Node));
+    memset(pInsert, 0, sizeof(Node));
+    pInsert->next = NULL;
+    pInsert->prior = NULL;
+    pInsert->element = x;
+
+    pMove = pNode;
+
+    //这里要考虑原链表为空的情况
+    if (pNode == NULL) {
+        pNode = pInsert;
+        printf("%s函数执行，在尾部插入节点成功\n",__FUNCTION__);
+        return pNode;
+    }
+
+    while (pMove->next != NULL) {
+        pMove = pMove->next;
+    }
+
+    pMove->next = pInsert;
+    pInsert->prior = pMove;
+
+    printf("%s函数执行，在尾部插入节点成功\n",__FUNCTION__);
+
+    return pNode;
+}
+
 
 int main(int argc, const char * argv[]) {
 
@@ -247,6 +279,9 @@ int main(int argc, const char * argv[]) {
     printList(pList);
 
     pList = insertHeadList(pList, 8888);
+    printList(pList);
+
+    pList = insertTailList(pList,9999);
     printList(pList);
 
     pList = clearList(pList);
