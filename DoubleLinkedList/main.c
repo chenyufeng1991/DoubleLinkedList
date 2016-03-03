@@ -7,7 +7,7 @@
 //
 
 /**
- *  实现一个非循环双向链表（不带头结点）
+ *  实现一个非循环双向链表（不带头结点）的基本操作
  */
 
 #include <stdio.h>
@@ -178,6 +178,28 @@ int *getElemAddr(Node *pNode,int x){
     return &(pMove->element);
 }
 
+//9.把双链表中第pos个结点的值修改为x的值，若修改成功返回１，否则返回０
+int modifyElem(Node *pNode,int pos,int x){
+
+    int i = 1;
+    Node *pMove;
+    pMove = pNode;
+    while (pMove != NULL) {
+        if (i == pos) {
+            pMove->element = x;
+            printf("%s函数执行，修改pos=%d位置的元素成功\n",__FUNCTION__,pos);
+            return 1;
+        }
+        i++;
+        pMove = pMove->next;
+    }
+
+    printf("%s函数执行，修改pos=%d位置的元素失败\n",__FUNCTION__,pos);
+
+    return 1;
+}
+
+
 int main(int argc, const char * argv[]) {
 
     Node *pList;
@@ -195,6 +217,9 @@ int main(int argc, const char * argv[]) {
     getElement(pList, 4);
 
     getElemAddr(pList, 5);
+
+    modifyElem(pList, 4, 1111);
+    printList(pList);
 
     pList = clearList(pList);
     printList(pList);
