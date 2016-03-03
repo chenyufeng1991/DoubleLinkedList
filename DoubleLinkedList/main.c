@@ -162,6 +162,21 @@ int getElement(Node *pNode,int pos){
     return -1;
 }
 
+//8.从不带头结点的双链表中查找具有给定值x的第一个元素，若查找成功则返回该结点data域的存储地址，否则返回NULL
+int *getElemAddr(Node *pNode,int x){
+
+    Node *pMove;
+    pMove = pNode;
+    while (pMove != NULL) {
+        if (pMove->element == x) {
+            printf("%s函数执行，x=%d元素的内存地址为:0x%x\n",__FUNCTION__,x,&(pMove->element));
+            return &(pMove->element);
+        }
+        pMove = pMove->next;
+    }
+    printf("%s函数执行，获取x=%d内存地址失败\n",__FUNCTION__,x);
+    return &(pMove->element);
+}
 
 int main(int argc, const char * argv[]) {
 
@@ -178,6 +193,8 @@ int main(int argc, const char * argv[]) {
     isEmptyList(pList);
 
     getElement(pList, 4);
+
+    getElemAddr(pList, 5);
 
     pList = clearList(pList);
     printList(pList);
