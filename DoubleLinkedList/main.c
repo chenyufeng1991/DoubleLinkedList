@@ -139,6 +139,29 @@ int isEmptyList(Node *pNode){
     return 0;
 }
 
+//7.返回不带头节点的双向非循环链表中第pos位置的元素
+int getElement(Node *pNode,int pos){
+
+    int i = 1;
+    Node *pMove;
+    pMove = pNode;
+    while (pMove != NULL) {
+
+        if (i == pos) {
+
+            printf("%s函数执行，第pos=%d位置的元素是%d\n",__FUNCTION__,pos,pMove->element);
+            return pMove->element;
+        }
+
+        i++;
+        pMove = pMove->next;
+    }
+
+    printf("%s函数执行，获取pos位置的元素失败\n",__FUNCTION__);
+
+    return -1;
+}
+
 
 int main(int argc, const char * argv[]) {
 
@@ -153,7 +176,9 @@ int main(int argc, const char * argv[]) {
     sizeList(pList);
 
     isEmptyList(pList);
-    
+
+    getElement(pList, 4);
+
     pList = clearList(pList);
     printList(pList);
     
